@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.ksp)
-    alias(libs.plugins.hilt.gradle)
 }
 
 android {
-    namespace = "com.githubbrowser.data"
+    namespace = "com.brian.users"
     compileSdk = 35
 
     defaultConfig {
@@ -36,29 +34,9 @@ android {
 
 dependencies {
 
-    implementation(project(":core:domain"))
-    api(project(":core:network"))
-    api(project(":core:database"))
-    api(project(":core:common"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-
-    // DI
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
-
-    // Database
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
-    implementation(libs.room.ktx)
-
-    // Paging
-    implementation(libs.androidx.paging.runtime.ktx)
-    implementation(libs.androidx.room.paging)
-    implementation (libs.androidx.paging.compose)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
