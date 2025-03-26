@@ -19,5 +19,5 @@ data class UserDetailEntity(
     @PrimaryKey val id: Int,
     val location: String? = null,
     val followers: Int,
-    val following: Int,
+    val following: Int
 )

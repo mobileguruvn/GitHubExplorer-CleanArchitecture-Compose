@@ -1,7 +1,7 @@
-package com.brian.users.navigation
+package com.brian.githubbrowser.navigation
 
+import com.brian.users.utils.NAV_ARG_LOGIN_NAME
 
-const val NAV_ARG_LOGIN_NAME = "login_name"
 
 sealed class Routes(val route: String) {
 

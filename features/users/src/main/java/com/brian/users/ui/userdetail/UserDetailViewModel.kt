@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.brian.users.mapper.UserUiMapper
-import com.brian.users.navigation.NAV_ARG_LOGIN_NAME
+import com.brian.users.utils.NAV_ARG_LOGIN_NAME
 import com.brian.users.utils.safe
 import com.githubbrowser.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -45,7 +45,7 @@ class UserDetailViewModel @Inject constructor(
                             UserDetailUiState.Success(userUiMapper.toUserDetailItemUi(userDetail))
                     }
                     result.onFailure {
-                        _uiState.value = UserDetailUiState.Error
+                        _uiState.value = UserDetailUiState.Error(it.message)
                     }
                 }
         }
@@ -54,7 +54,7 @@ class UserDetailViewModel @Inject constructor(
 
 sealed interface UserDetailUiState {
     data class Success(val userWithDetail: UserDetailItemUi) : UserDetailUiState
-    object Error : UserDetailUiState
+    data class Error(val error: String? = null) : UserDetailUiState
     object Loading : UserDetailUiState
 
 }

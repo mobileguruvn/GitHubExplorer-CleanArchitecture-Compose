@@ -24,8 +24,8 @@ interface UserDao {
     suspend fun insertUserDetail(useDetail: UserDetailEntity)
 
     @Transaction
-    @Query("SELECT * FROM user WHERE login = :login")
-    fun getUserWithDetail(login: String) : Flow<UserWithDetailEntity>
+    @Query("SELECT * FROM user WHERE id = :userId")
+    fun getUserWithDetail(userId: String): Flow<UserWithDetailEntity>
 
     @Query("DELETE FROM user")
     suspend fun clearUsers()

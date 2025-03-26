@@ -1,4 +1,4 @@
-package com.brian.githubbrowser.ui.theme
+package com.githubbrowser.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,5 +1,5 @@
 [versions]
-agp = "8.9.0"
+agp = "8.9.1"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -63,7 +63,8 @@ androidx-paging-compose = { module = "androidx.paging:paging-compose", version.r
 androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomPaging" }
-
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycleRuntimeKtx" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "gson" }

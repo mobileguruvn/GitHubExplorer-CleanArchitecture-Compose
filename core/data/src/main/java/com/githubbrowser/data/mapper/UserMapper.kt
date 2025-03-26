@@ -7,6 +7,7 @@ import com.githubbrowser.domain.model.User
 import com.githubbrowser.domain.model.UserDetail
 import com.githubbrowser.network.model.UserDetailDto
 import com.githubbrowser.network.model.UserDto
+import javax.inject.Inject
 
 interface UserMapper {
     fun toUser(userEntity: UserEntity): User
@@ -18,7 +19,7 @@ interface UserMapper {
     fun toUserDetailEntity(userDetailDto: UserDetailDto): UserDetailEntity
 }
 
-class UserMapperImpl : UserMapper {
+class UserMapperImpl @Inject constructor() : UserMapper {
     override fun toUser(userEntity: UserEntity): User {
         return User(
             id = userEntity.id,

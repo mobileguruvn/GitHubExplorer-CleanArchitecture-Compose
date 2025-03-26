@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "GitHubBrowser Android Compose"
+rootProject.name = "GitHubBrowser"
 include(":mobile")
 include(":core:common")
 include(":core:data")

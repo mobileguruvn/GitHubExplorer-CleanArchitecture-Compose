@@ -14,6 +14,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "API_BASE_URL", "\"${project.property("API_BASE_URL")}\"")
+        buildConfigField("String", "ACCESS_TOKEN", "\"${project.property("ACCESS_TOKEN")}\"")
     }
 
     buildTypes {
@@ -31,6 +34,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 

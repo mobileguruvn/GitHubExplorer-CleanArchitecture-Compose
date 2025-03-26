@@ -1,5 +1,6 @@
 package com.githubbrowser.network.di
 
+import com.githubbrowser.network.BuildConfig
 import com.githubbrowser.network.GithubApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
