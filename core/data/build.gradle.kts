@@ -36,7 +36,6 @@ android {
 
 dependencies {
 
-    implementation(project(":core:domain"))
     api(project(":core:network"))
     api(project(":core:database"))
     api(project(":core:common"))

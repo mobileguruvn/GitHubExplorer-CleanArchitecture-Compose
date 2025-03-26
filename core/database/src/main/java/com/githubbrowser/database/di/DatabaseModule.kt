@@ -2,7 +2,7 @@ package com.githubbrowser.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.githubbrowser.database.GitHubUserDatabase
+import com.githubbrowser.database.GitHubDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,18 +16,18 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): GitHubUserDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): GitHubDatabase {
         return Room.databaseBuilder(
             context,
-            GitHubUserDatabase::class.java,
+            GitHubDatabase::class.java,
             "github_user_database"
         ).build()
     }
 
     @Provides
-    fun provideGitHubUserDao(database: GitHubUserDatabase) = database.userDao()
+    fun provideGitHubUserDao(database: GitHubDatabase) = database.userDao()
 
     @Provides
-    fun providesRemoteKeysDao(database: GitHubUserDatabase) = database.remoteKeysDao()
+    fun providesRemoteKeysDao(database: GitHubDatabase) = database.remoteKeysDao()
 
 }

@@ -2,7 +2,6 @@ package com.brian.githubbrowser.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -10,8 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.brian.githubbrowser.navigation.Routes.UserDetail
-import com.brian.users.ui.userdetail.UserDetailScreen
-import com.brian.users.ui.users.UserListScreen
+import com.brian.users.presentation.userdetail.UserDetailScreen
+import com.brian.users.presentation.users.UserListScreen
 import com.brian.users.utils.NAV_ARG_LOGIN_NAME
 
 @Composable

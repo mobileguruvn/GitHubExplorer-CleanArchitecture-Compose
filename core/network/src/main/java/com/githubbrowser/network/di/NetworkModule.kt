@@ -1,7 +1,6 @@
 package com.githubbrowser.network.di
 
 import com.githubbrowser.network.BuildConfig
-import com.githubbrowser.network.GithubApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -18,7 +17,6 @@ import javax.inject.Singleton
 
 const val LOGGING_INTERCEPTOR = "LoggingInterceptor"
 const val HEADER_INTERCEPTOR = "HeaderInterceptor"
-const val BASE_URL = "https://api.github.com/"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -73,9 +71,4 @@ object NetworkModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideGitHubApi(retrofit: Retrofit): GithubApi {
-        return retrofit.create(GithubApi::class.java)
-    }
 }

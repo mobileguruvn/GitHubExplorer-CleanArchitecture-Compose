@@ -22,8 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "GitHubExplorer"
 include(":mobile")
 include(":core:common")
-include(":core:data")
-include(":core:domain")
 include(":core:database")
 include(":core:network")
 include(":core:designsystem")

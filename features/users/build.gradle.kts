@@ -41,9 +41,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:data"))
-    implementation(project(":core:domain"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:database"))
+    implementation(project(":core:common"))
+    implementation(project(":core:network"))
 
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
@@ -60,6 +61,16 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    // Networking
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    // Database
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
 
     // Paging Compose
     implementation (libs.androidx.paging.compose)
