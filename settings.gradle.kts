@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "GitHubBrowser"
+rootProject.name = "GitHubExplorer"
 include(":mobile")
 include(":core:common")
 include(":core:data")

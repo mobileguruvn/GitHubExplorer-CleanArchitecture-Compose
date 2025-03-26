@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">GitHubBrowser</string>
+    <string name="app_name">GitHubExplorer</string>
 
-    <string name="user_list_title">Github Users</string>
+    <string name="user_list_title">GitHub Users</string>
     <string name="user_detail_title">User Details</string>
     <string name="back_button_description">Back Button</string>
     <string name="label_follower">Follower</string>
