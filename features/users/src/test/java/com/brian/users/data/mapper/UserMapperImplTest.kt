@@ -9,7 +9,7 @@ import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 
-class UsersRepositoryImplTest {
+class UserMapperImplTest {
 
     private val userMapper: UserMapper = UserMapperImpl()
 
