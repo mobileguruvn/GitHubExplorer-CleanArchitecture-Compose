@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.testImplementation
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -81,8 +83,14 @@ dependencies {
     // Kotlin coroutines
     implementation(libs.kotlinx.coroutines.android)
 
+    // build.gradle
+    testImplementation(libs.mockk)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }
