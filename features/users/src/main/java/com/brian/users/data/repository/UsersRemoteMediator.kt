@@ -1,16 +1,16 @@
 package com.brian.users.data.repository
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.brian.users.data.mapper.UserMapper
+import com.brian.users.data.network.datasource.UsersRemoteDataSource
 import com.githubbrowser.database.GitHubDatabase
 import com.githubbrowser.database.model.RemoteKeys
 import com.githubbrowser.database.model.UserEntity
-import com.brian.users.data.network.datasource.UsersRemoteDataSource
+import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 
@@ -21,23 +21,23 @@ private const val GITHUB_STARTING_PAGE_INDEX = 0
 class UsersRemoteMediator @Inject constructor(
     private val remoteDataSource: UsersRemoteDataSource,
     private val gitHubUserDatabase: GitHubDatabase,
-    private val userMapper: UserMapper
+    private val userMapper: UserMapper,
 ) : RemoteMediator<Int, UserEntity>() {
 
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, UserEntity>,
     ): MediatorResult {
-        Log.d("RemoteMediator", "LoadType: $loadType")
+        Timber.tag("RemoteMediator").d("LoadType: $loadType")
         val since = when (loadType) {
             LoadType.REFRESH -> {
-                Log.d("RemoteMediator", "LoadType.REFRESH triggered")
+                Timber.d("LoadType.REFRESH triggered")
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
                 remoteKeys?.nextKey?.minus(1) ?: GITHUB_STARTING_PAGE_INDEX
             }
 
             LoadType.PREPEND -> {
-                Log.d("RemoteMediator", "LoadType.PREPEND triggered")
+                Timber.d("LoadType.PREPEND triggered")
                 val remoteKeys = getRemoteKeyForFirstItem(state)
                 // If remoteKeys is null, that means the refresh result is not in the database yet.
                 // We can return Success with endOfPaginationReached = false because Paging
@@ -52,7 +52,7 @@ class UsersRemoteMediator @Inject constructor(
             }
 
             LoadType.APPEND -> {
-                Log.d("RemoteMediator", "LoadType.APPEND triggered")
+                Timber.d("LoadType.APPEND triggered")
                 val remoteKeys = getRemoteKeyForLastItem(state)
                 // If remoteKeys is null, that means the refresh result is not in the database yet.
                 // We can return Success with endOfPaginationReached = false because Paging
@@ -67,7 +67,7 @@ class UsersRemoteMediator @Inject constructor(
             }
         }
 
-        Log.d("RemoteMediator", "Fetching data for since = $since")
+        Timber.d("Fetching data for since = $since")
 
         try {
             val response =
@@ -84,10 +84,8 @@ class UsersRemoteMediator @Inject constructor(
             val users = response.getOrNull() ?: emptyList()
             val endOfPaginationReached = users.isEmpty()
 
-            Log.d(
-                "RemoteMediator",
-                "API returned ${users.size} users. End of pagination: $endOfPaginationReached"
-            )
+            Timber.tag("RemoteMediator")
+                .d("API returned ${users.size} users. End of pagination: $endOfPaginationReached")
 
             gitHubUserDatabase.withTransaction {
                 // clear all tables in the database
@@ -101,16 +99,13 @@ class UsersRemoteMediator @Inject constructor(
                 val keys = users.map { user ->
                     RemoteKeys(userId = user.id, prevKey = prevKey, nextKey = nextKey?.toInt())
                 }
-                Log.d(
-                    "RemoteMediator",
-                    "PrevKey: $prevKey, NextKey: $nextKey"
-                )
+                Timber.tag("RemoteMediator").d("PrevKey: $prevKey, NextKey: $nextKey")
                 gitHubUserDatabase.remoteKeysDao().insertAll(keys)
                 gitHubUserDatabase.userDao().insertUsers(users.map { userMapper.toUserEntity(it) })
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: IOException) {
-            Log.e("RemoteMediator", "Error fetching data", e)
+            Timber.tag("RemoteMediator").e(e, "Error fetching data")
             return MediatorResult.Error(e)
         }
     }
