@@ -56,8 +56,7 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
 
-//    implementation(libs.androidx.core.ktx)
-//    implementation(libs.androidx.appcompat)
+    implementation(libs.timber)
 
     // DI
     implementation(libs.hilt.navigation.compose)
@@ -83,7 +82,6 @@ dependencies {
     // Kotlin coroutines
     implementation(libs.kotlinx.coroutines.android)
 
-    // build.gradle
     testImplementation(libs.mockk)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)

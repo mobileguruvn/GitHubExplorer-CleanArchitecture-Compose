@@ -1,6 +1,7 @@
 [versions]
 agp = "8.9.1"
-kotlin = "2.1.10"
+junitJupiter = "5.9.3"
+kotlin = "2.1.20"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -10,7 +11,7 @@ kotlinxCoroutinesTest = "1.10.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 composeBom = "2025.03.01"
-kotlin-ksp = "2.0.21-1.0.27"
+kotlin-ksp = "2.1.20-1.0.32"
 
 
 # DI
@@ -20,7 +21,7 @@ androidXHilt = "1.2.0"
 # Networking
 gson = "2.11.0"
 loggingInterceptor = "4.12.0"
-mockk = "1.13.3"
+mockk = "1.13.10"
 retrofit = "2.11.0"
 
 # Image Loading
@@ -33,6 +34,7 @@ room = "2.6.1"
 material = "1.12.0"
 roomPaging = "2.6.1"
 appcompat = "1.7.0"
+timber = "5.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,10 +49,12 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger-hilt" }
