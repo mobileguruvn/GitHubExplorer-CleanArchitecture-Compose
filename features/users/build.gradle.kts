@@ -21,6 +21,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -85,6 +88,14 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
+
+    // Paging (core paging lib, works with AsyncPagingDataDiffer)
+    testImplementation(libs.androidx.paging.common)
+
+    testImplementation(libs.androidx.paging.runtime)
+
+    // Flow test utilities
+    testImplementation(libs.turbine)
 
     implementation(libs.material)
     testImplementation(libs.junit)

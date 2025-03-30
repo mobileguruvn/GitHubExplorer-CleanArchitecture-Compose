@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.ksp)
-    alias(libs.plugins.hilt.gradle)
 }
 
 android {
-    namespace = "com.githubbrowser.database"
+    namespace = "com.brian.test"
     compileSdk = 35
 
     defaultConfig {
@@ -36,18 +34,20 @@ android {
 
 dependencies {
 
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
-    implementation(libs.room.ktx)
-
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
-
     implementation(libs.androidx.paging.runtime)
-    implementation(libs.androidx.room.paging)
 
-    implementation(libs.timber)
+    testImplementation(libs.androidx.paging.runtime)
 
+    testImplementation(libs.mockk)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    // Paging (core paging lib, works with AsyncPagingDataDiffer)
+    testImplementation(libs.androidx.paging.common)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
