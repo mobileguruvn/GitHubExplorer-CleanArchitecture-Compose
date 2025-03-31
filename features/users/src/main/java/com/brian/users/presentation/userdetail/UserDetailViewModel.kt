@@ -7,6 +7,7 @@ import com.brian.users.presentation.mapper.UserUiMapper
 import com.brian.users.utils.NAV_ARG_LOGIN_NAME
 import com.brian.users.utils.safe
 import com.brian.users.domain.repository.UserRepository
+import com.brian.users.domain.usecase.GetUserDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserDetailViewModel @Inject constructor(
-    private val userRepository: UserRepository,
+    private val getUserDetailUseCase: GetUserDetailUseCase,
     private val savedStateHandle: SavedStateHandle,
     private val userUiMapper: UserUiMapper,
 ) : ViewModel() {
@@ -35,7 +36,7 @@ class UserDetailViewModel @Inject constructor(
     fun getUserDetail() {
         _uiState.value = UserDetailUiState.Loading
         viewModelScope.launch {
-            userRepository.getUserDetail(loginName)
+            getUserDetailUseCase(loginName)
                 .onStart {
                     _uiState.value = UserDetailUiState.Loading
                 }

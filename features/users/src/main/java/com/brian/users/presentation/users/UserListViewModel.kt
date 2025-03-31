@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.brian.users.presentation.mapper.UserUiMapper
 import com.brian.users.domain.repository.UserRepository
+import com.brian.users.domain.usecase.GetUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -16,11 +17,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-    private val userRepository: UserRepository,
+    private val getUsersUseCase: GetUsersUseCase,
     private val userUiMapper: UserUiMapper,
 ) : ViewModel() {
 
-    val usersPaging: StateFlow<PagingData<UserUiState>> = userRepository.getUsers()
+    val usersPaging: StateFlow<PagingData<UserUiState>> = getUsersUseCase()
         .map { pagingData -> pagingData.map { userUiMapper.toUiState(it) } }
         .cachedIn(viewModelScope)
         .stateIn(
