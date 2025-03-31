@@ -12,7 +12,7 @@ interface UsersLocalDataSource {
     fun getUsers() : PagingSource<Int, UserEntity>
     suspend fun insertUsers(users: List<UserEntity>)
     suspend fun insertUserDetails(userDetail: UserDetailEntity)
-    fun getUserWithDetail(id: String) : Flow<UserWithDetailEntity>
+    fun getUserWithDetail(id: Int) : Flow<UserWithDetailEntity>
     suspend fun clearUsers()
 }
 
@@ -29,7 +29,7 @@ class UsersLocalDataSourceImpl @Inject constructor(private val userDao: UserDao)
         userDao.insertUserDetail(userDetail)
     }
 
-    override fun getUserWithDetail(id: String): Flow<UserWithDetailEntity> {
+    override fun getUserWithDetail(id: Int): Flow<UserWithDetailEntity> {
         return userDao.getUserWithDetail(id)
     }
 

@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 interface UserDao {
 
     @Query("SELECT * FROM user")
-    fun getUsers() : PagingSource<Int, UserEntity>
+    fun getUsers(): PagingSource<Int, UserEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUsers(users: List<UserEntity>)
@@ -25,7 +25,7 @@ interface UserDao {
 
     @Transaction
     @Query("SELECT * FROM user WHERE id = :userId")
-    fun getUserWithDetail(userId: String): Flow<UserWithDetailEntity>
+    fun getUserWithDetail(userId: Int): Flow<UserWithDetailEntity>
 
     @Query("DELETE FROM user")
     suspend fun clearUsers()

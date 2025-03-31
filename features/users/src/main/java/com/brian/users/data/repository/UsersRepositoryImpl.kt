@@ -48,9 +48,9 @@ class UsersRepositoryImpl @Inject constructor(
         }.flowOn(ioDispatcher)
     }
 
-    override fun getUserDetail(loginUserName: String): Flow<Result<UserDetail>> = flow {
+    override fun getUserDetail(userName: String): Flow<Result<UserDetail>> = flow {
         try {
-            val response = usersRemoteDataSource.fetchUserDetail(loginUserName)
+            val response = usersRemoteDataSource.fetchUserDetail(userName)
             if (response.isFailure) {
                 emit(Result.failure(response.exceptionOrNull() ?: Exception("Unknown error")))
                 return@flow
@@ -58,7 +58,7 @@ class UsersRepositoryImpl @Inject constructor(
 
             val userDetail = response.getOrNull()
             if (null == userDetail) {
-                emit(Result.failure(Exception("User detail is null")))
+                emit(Result.failure(NullPointerException("User detail is null")))
                 return@flow
             }
 
@@ -71,7 +71,7 @@ class UsersRepositoryImpl @Inject constructor(
 
             // Emit from local db
             emitAll(
-                usersLocalDataSource.getUserWithDetail(id = userDetail.id.toString())
+                usersLocalDataSource.getUserWithDetail(id = userDetail.id)
                     .map {
                         Result.success(userMapper.toUserDetail(it))
                     })
